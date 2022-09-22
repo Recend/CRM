@@ -9,6 +9,8 @@ class Company
     public $phone;
     public $email;
 
+    private $customer;
+
     /**
      * @param $id
      * @param $name
@@ -29,11 +31,13 @@ class Company
         $this->email = $email;
     }
 
-    public static function prideti($name, $adress, $vat_code, $company_name, $phone, $email)
+    public function prideti()
     {
         $pdo = DB::getPDO();
         $stm = $pdo->prepare("INSERT INTO `companys` (`name`, `adress`, `vat_code`, `company_name`, `phone`, `email`) VALUES (?,?,?,?,?,?)");
-        $stm->execute([$name, $adress, $vat_code, $company_name, $phone, $email]);
+        $stm->execute([$this->name, $this->adress, $this->vat_code, $this->company_name, $this->phone, $this->email]);
+         $pdo->lastInsertId();
+
     }
 
 
@@ -58,6 +62,25 @@ class Company
         $c=$stm->fetch(PDO::FETCH_ASSOC);
         $company=new Company($c['name'],$c['adress'],$c['vat_code'],$c['company_name'],$c['phone'],$c['email'],$id);
         return $company;
+
+
+    }   public static function getCompanies(){
+        $pdo=DB::getPDO();
+        $stm=$pdo->prepare("SELECT * FROM companys");
+        $stm->execute();
+        $company=[];
+        foreach ($stm->fetchAll(PDO::FETCH_ASSOC) as $c){
+        $company[]=new Company($c['name'],$c['adress'],$c['vat_code'],$c['company_name'],$c['phone'],$c['email'], $c['id']);
+    }
+    return $company;
+}
+
+    public function getCustomers() {
+        if ($this->customer==null){
+            $this->customer=Customer::getCustomers();
+        }
+
+        return $this->customer;
     }
 
 }
