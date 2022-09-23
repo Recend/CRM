@@ -6,17 +6,22 @@ include "Conversation.php";
 include_once "lib/BladeOne.php";
 use  eftec\bladeone\BladeOne;
 
-//
-//$customer=Customer::getCustomers();
-//foreach ($customer as $c){
-//  echo $c->name." ".$c->surname. "<br>";
-//
-//}
+if (isset($_GET['delete'])){
+    $companies=Company::getCompany($_GET['delete']);
+    $companies->istrinti();
+
+
+
+}if (isset($_GET['deletee'])){
+    $customers=Customer::getCustomer($_GET['deletee']);
+    $conversation=Conversation::getConversation($_GET['deletee']);
+    $customers->istrinti();
+    $conversation->istrinti();
+}
 
 $customers=Customer::getCustomers();
 $blade=new BladeOne();
 echo $blade->run("customers", ["customers"=>$customers]);
-
 
 $companies=Company::getCompanies();
 $blade=new BladeOne();
@@ -24,15 +29,9 @@ echo $blade->run("companies",["companies"=>$companies]);
 
 
 
-//$company=new Company('KABAS', 'babas','123', 'maxima','43647', 'asdas@gmail.com');
-//$company->prideti();
 
-//$c=Company::getCompany(29);
-//$c->name='STORAS';
-//$c->atnaujinti();
 
-//$del=Company::getCompany(33);
-//$del->istrinti();
+
 
 
 

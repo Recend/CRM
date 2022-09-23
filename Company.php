@@ -40,8 +40,6 @@ class Company
 
     }
 
-
-
     public function atnaujinti (){
         $pdo = DB::getPDO();
         $stm = $pdo->prepare("UPDATE companys SET name=?, adress=?, vat_code=?, company_name=?, phone=?, email=? WHERE id=?");
@@ -82,5 +80,8 @@ class Company
 
         return $this->customer;
     }
+
+
+
 
 }

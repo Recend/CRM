@@ -14,19 +14,16 @@
 <div class="container">
     <table class="table">
         <thead>
-        <th>Vardas</th>
-        <th>Pavardė</th>
-        <th>Telefono nr</th>
-        <th>Emailas</th>
+        <th>Klientas</th>
+        <th>Data</th>
+        <th>Konversacija</th>
         <th></th>
         </thead>
-        @foreach($companies as $company)
+        @foreach($conversation as $con)
             <tr>
-                <td>{{ $company->name }}</td>
-                <td>{{ $company->adress }}</td>
-                <td>{{ $company->vat_code }}</td>
-                <td>{{ $company->company_name }}</td>
-                <td><a class="btn btn-danger" href="?delete={{$company->id}}">Ištrinti</a></td>
+                <td>{{ $con->customer_id }}</td>
+                <td>{{ $con->date }}</td>
+                <td>{{ $con->conversation }}</td>
             </tr>
         @endforeach
     </table>

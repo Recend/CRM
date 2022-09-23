@@ -23,7 +23,7 @@ class Customer{
      * @param $position
      * @param $company_id
      */
-    public function __construct( $name, $surname, $phone, $email, $adress, $position, $company_id, $id=null)
+    public function __construct( $name, $surname, $phone, $email, $adress, $position, $company_id=null, $id=null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -35,6 +35,14 @@ class Customer{
         $this->company_id = $company_id;
     }
 
+
+    public function createCustomer(){
+        $pdo=DB::getPDO();
+        $stm=$pdo->prepare("INSERT INTO `customers`(`name`, `surname`, `phone`, `email`, `adress`, `position`, `company_id`) VALUES (?,?,?,?,?,?,?)");
+        $stm->execute([$_POST['name'],$_POST['surname'],$_POST['phone'],$_POST['email'],$_POST['adress'],$_POST['position'],$_POST['company_id']]);
+        $this->id=$pdo->lastInsertId();
+        return $this;
+    }
 
 
     public static function getCustomers(){
@@ -48,7 +56,22 @@ class Customer{
         return $customers;
     }
 
+    public static function getCustomer($id)
+    {
+        $pdo = DB::getPDO();
+        $stm = $pdo->prepare("SELECT * FROM customers WHERE id=?");
+        $stm->execute([$id]);
+        $c = $stm->fetch(PDO::FETCH_ASSOC);
+        $customer = new Customer($c['name'], $c['surname'], $c['phone'], $c['email'], $c['adress'], $c['position'], $c['company_id'], $c['id']);
+        return $customer;
+    }
 
+
+        public function istrinti(){
+        $pdo=DB::getPDO();
+        $stm=$pdo->prepare("DELETE FROM customers WHERE id=?");
+        $stm->execute([ $this->id ]);
+    }
 
     public function  getCompany(){
             if($this->company==null){
