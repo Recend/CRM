@@ -16,18 +16,26 @@
     <form action="" method="POST" class="form-control">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="{{$customer->id}}">
-        <input class="form-control" type="text" name="name" value="{{$customer->name}}"> <br>
-        <input class="form-control" type="text" name="surname" value="{{$customer->surname}}"> <br>
-        <input class="form-control" type="number" name="phone" value="value="{{$customer->phone}}"> <br>
-        <input class="form-control" type="text" name="email" value="{{$customer->email}}" > <br>
-        <input class="form-control" type="text" name="adress" value="{{$customer->adress}}"> <br>
-        <input class="form-control" type="text" name="position" value="{{$customer->position}}"> <br>
+        <label for="" class="form-label">Vardas</label>
+        <input class="form-control" type="text" name="name" value="{{$customer->name}}">
+        <label for="" class="form-label">Pavardė</label>
+        <input class="form-control" type="text" name="surname" value="{{$customer->surname}}">
+        <label for="" class="form-label">Telefonor nr.</label>
+        <input class="form-control" type="number" name="phone" value="value="{{$customer->phone}}">
+        <label for="" class="form-label">Elektroninis paštas</label>
+        <input class="form-control" type="text" name="email" value="{{$customer->email}}" >
+        <label for="" class="form-label">Adresas</label>
+        <input class="form-control" type="text" name="adress" value="{{$customer->adress}}">
+        <label for="" class="form-label">Pozicija</label>
+        <input class="form-control" type="text" name="position" value="{{$customer->position}}">
+        <label for="" class="form-label">Įmonė</label>
         <select class="form-control" name="company_id">
             <option selected>Pasrinkti</option>
             @foreach($companies as $company)
-                <option value="{{$company->id}}">{{$company->name}}</option>
+                <option value="{{$company->id}}" {{$customer->company_id == $company->id ? 'selected' : ''}}>{{$company->name}} </option>
             @endforeach
-        </select> <br>
+        </select>
+        <label for="" class="form-label">Kalbėjo apie</label>
         <input class="form-control" type="text" name="conversation" value="{{$conversation->conversation}}">
         <button class="btn btn-primary">Atnaujinti</button>
         <a class="btn btn-primary float-end" href="index.php">Atgal</a>
