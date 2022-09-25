@@ -12,7 +12,7 @@
 
 <body>
  <div class="container">
-
+<h1>Naujas klientas</h1>
  <form action="" method="POST" class="form-control">
  <input type="hidden" name="action" value="insert">
  <input class="form-control" type="text" name="name" placeholder="Vardas"> <br>
@@ -29,8 +29,8 @@
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </select> <br>
  <input class="form-control" type="text" name="conversation" placeholder="Kalbejo apie">
- <button class="btn btn-primary">Pridėti</button>
- <a class="btn btn-primary float-end" href="index.php">Atgal</a>
+ <button class="btn btn-primary mt-3">Pridėti</button>
+ <a class="btn btn-primary float-end mt-3" href="index.php">Atgal</a>
  </form>
  </div>
 </body>

@@ -13,6 +13,7 @@
 
 <body>
 <div class="container">
+    <h1>Įmonės {{" ".$company->name. " "}}redagavimas</h1>
     <form action="" method="POST" class="form-control">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="{{$company->id}}">

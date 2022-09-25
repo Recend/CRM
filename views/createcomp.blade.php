@@ -12,9 +12,10 @@
 
 <body>
 <div class="container">
+    <h1>Nauja įmonė</h1>
     <form action="" method="POST" class="form-control">
         <input type="hidden" name="action" value="insert">
-        <input class="form-control" type="text" name="name" placeholder="Vardas"> <br>
+        <input class="form-control" type="text" name="name" placeholder="Įmonės vardas"> <br>
         <input class="form-control" type="text" name="adress" placeholder="Adresas"> <br>
         <input class="form-control" type="number" name="vat_code" placeholder="VAT Kodas"> <br>
         <input class="form-control" type="text" name="company_name" placeholder="Kompanijos pavadinimas"> <br>
