@@ -38,7 +38,7 @@ class Conversation{
     $stm->execute();
     $conversation=[];
     foreach ($stm->fetchAll(PDO::FETCH_ASSOC) as $c){
-        $conversation[]=new Conversation($c['customer_id'],$c['date'],$c['conversation'],$c['id'],);
+        $conversation[]=new Conversation($c['customer_id'],$c['date'],$c['conversation'],$c['id']);
     }
     return $conversation;
 }
@@ -50,6 +50,12 @@ class Conversation{
         $stm->execute([$_POST['conversation'], $this->customer_id]);
 
     }
+    public  function editCustomerConversation(){
+        $pdo = DB::getPDO();
+        $stm = $pdo->prepare("UPDATE `contact_information` SET `conversation`=?, customer_id=? WHERE id=?");
+        $stm->execute([$_POST['conversation'], $this->customer_id]);
+    }
+
         public function istrinti(){
             $pdo=DB::getPDO();
             $stm=$pdo->prepare("DELETE FROM contact_information WHERE id=?");

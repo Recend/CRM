@@ -17,6 +17,7 @@ if (isset($_GET['delete'])){
     $conversation=Conversation::getConversation($_GET['deletee']);
     $customers->istrinti();
     $conversation->istrinti();
+    header('location:index.php');
 }
 
 $customers=Customer::getCustomers();

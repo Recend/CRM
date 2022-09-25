@@ -66,6 +66,11 @@ class Customer{
         return $customer;
     }
 
+    public function atnaujinti(){
+        $pdo = DB::getPDO();
+        $stm = $pdo->prepare("UPDATE customers SET name=?, surname=?, phone=?, email=?, adress=?, position=?, company_id=? WHERE id=?");
+        $stm->execute([$_POST['name'], $_POST['surname'],$_POST['phone'],$_POST['email'],$_POST['adress'],$_POST['position'],$_POST['company_id'], $_POST['id']]);
+    }
 
         public function istrinti(){
         $pdo=DB::getPDO();

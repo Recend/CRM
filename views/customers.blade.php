@@ -12,8 +12,8 @@
 
 <body>
 <div class="container">
-    <a class="btn btn-success" href="create.php">Sukurti pirkėją</a>
-    <a class="btn btn-success" href="createcomp.php">Sukurti kompanija</a>
+    <h1>Klientai</h1>
+    <a class="btn btn-success float-end" href="create.php">Naujas klientas</a>
 <table class="table">
     <thead>
     <th>Vardas</th>
@@ -22,8 +22,8 @@
     <th>Emailas</th>
     <th>Adresas</th>
     <th>Pozicija</th>
-    <th>Dirba</th>
-    <th>Konversacija</th>
+    <th>Bendarvo su įmone</th>
+    <th>Kalbėjo apie</th>
     <th></th>
     </thead>
     @foreach($customers as $customer)
@@ -36,6 +36,7 @@
             <td>{{ $customer->position }}</td>
             <td>{{($customer->getCompany()->name)}}</td>
             <td>{{$customer->getConversations($customer->id)->conversation}}</td>
+            <td><a class="btn btn-info" href="edit.php?id={{$customer->id}}">Redaguoti</a></td>
             <td><a class="btn btn-danger" href="?deletee={{$customer->id}}">Ištrinti</a></td>
         </tr>
     @endforeach
