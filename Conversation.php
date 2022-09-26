@@ -53,7 +53,7 @@ class Conversation{
     public  function editCustomerConversation(){
         $pdo = DB::getPDO();
         $stm = $pdo->prepare("UPDATE `contact_information` SET `conversation`=?, customer_id=? WHERE id=?");
-        $stm->execute([$_POST['conversation'], $this->customer_id]);
+        $stm->execute([$this->conversation, $this->customer_id, $this->id]);
     }
 
         public function istrinti(){

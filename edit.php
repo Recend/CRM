@@ -22,8 +22,9 @@ if (isset($_POST['action']) &&  $_POST['action']=='update'){
        $customer->company_id=$_POST['company_id'];
        $customer->atnaujinti();
 
-//       $conversation->conversation=$_POST['conversation'];
-//       $conversation->editCustomerConversation();
+       $conversation->customer_id=$_POST['id'];
+       $conversation->conversation=$_POST['conversation'];
+       $conversation->editCustomerConversation();
 
 }
 
