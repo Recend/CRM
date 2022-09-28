@@ -2,7 +2,7 @@
 include_once "DB.php";
 include_once "Company.php";
 include_once "Customer.php";
-include "Conversation.php";
+include_once "Conversation.php";
 include_once "lib/BladeOne.php";
 use  eftec\bladeone\BladeOne;
 

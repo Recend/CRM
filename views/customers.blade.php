@@ -11,9 +11,32 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        @if($user->canEdit())
+        <a class="navbar-brand" href="#">Super Admin</a>
+        @else
+        <a class="navbar-brand" href="#">Admin</a>
+        @endif
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @foreach($user->getNavigation() as $item)
+                <li class="nav-item">
+                        <a class="navbar-brand"href="{{$item['link']}}"> {{$item['name']}}</a>
+                </li>
+                @endforeach
+                <li> <a class="btn btn-warning float-end" href="login.php?action=logout">Atsijungti</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
 <div class="container">
+
     <h1>Klientai</h1>
-    <a class="btn btn-success float-end" href="create.php">Naujas klientas</a>
 <table class="table">
     <thead>
     <th>Vardas</th>
@@ -36,8 +59,10 @@
             <td>{{ $customer->position }}</td>
             <td>{{($customer->getCompany()->name)}}</td>
             <td>{{$customer->getConversations($customer->id)->conversation}}</td>
+            @if($user->canEdit())
             <td><a class="btn btn-info" href="edit.php?id={{$customer->id}}">Redaguoti</a></td>
             <td><a class="btn btn-danger" href="?deletee={{$customer->id}}">Ištrinti</a></td>
+            @endif
         </tr>
     @endforeach
 </table>

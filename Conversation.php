@@ -27,7 +27,7 @@ class Conversation{
         $stm=$pdo->prepare("SELECT * FROM contact_information WHERE customer_id=?");
         $stm->execute([$customer_id]);
         $c=$stm->fetch(PDO::FETCH_ASSOC);
-        $conversation=new Conversation($c['conversation'],$customer_id ,$c['date']);
+        $conversation=new Conversation($c['conversation'],$customer_id ,$c['date'], $c['id']);
         return $conversation;
 
     }

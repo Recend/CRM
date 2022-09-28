@@ -13,7 +13,6 @@
 <body>
 <div class="container">
     <h1>Įmonės</h1>
-    <a class="btn btn-success float-end" href="createcomp.php">Nauja kompanija</a>
     <table class="table">
         <thead>
         <th>Įmonės pavadinimas</th>
@@ -29,8 +28,10 @@
                 <td>{{ $company->adress }}</td>
                 <td>{{ $company->vat_code }}</td>
                 <td>{{ $company->company_name }}</td>
+                @if($user->canEdit())
                 <td><a class="btn btn-info" href="editcompany.php?id={{$company->id}}">Redaguoti</a></td>
                 <td><a class="btn btn-danger" href="?delete={{$company->id}}">Ištrinti</a></td>
+                @endif
             </tr>
         @endforeach
     </table>
